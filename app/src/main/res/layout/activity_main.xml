@@ -37,13 +37,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.teaml.seacalf.CurvedBottomNavigationView
         android:id="@+id/nav_menu"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="85dp"
         android:background="@color/dark_blue"
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="24dp"
         app:itemIconTint="@null"
-        app:itemIconSize="70dp"/>
+        app:itemTextColor="@null" />
 </LinearLayout>
