@@ -1,0 +1,35 @@
+<resources>
+    <!--GENERAL-->
+    <string name="app_name">Sea Calf</string>
+    <string name="task1_name">TASK_EXAMPLE</string>
+    <string name="coin_description">coin</string>
+
+    <!--TASKS FRAGMENT-->
+    <string name="title_tasks">Tasks Tab</string>
+    <string name="title_pet">Pet Tab</string>
+    <string name="title_stats">Stats Tab</string>
+    
+    <!--CREATE TASK DIALOG-->
+    <string name="dialog_hint_name">Название…</string>
+    <string name="dialog_text_days">Дней на выполнение:</string>
+    <string name="dialog_hint_days">…</string>
+
+    <!--STATS FRAGMENT-->
+    <string name="stat_icon_description">stat</string>
+    <string name="stat_1_description">Заданий выполено:</string>
+    <string name="stat_2_description">Заданий провалено:</string>
+    <string name="stat_3_description">Уровень тюленя:</string>
+    <string name="stat_4_description">Золота заработано:</string>
+    <string name="stat_5_description">Предметов куплено:</string>
+
+    <!--PET FRAGMENT-->
+    <string name="pet_name">Тюлень</string>
+    <string name="pet_name_hint">Имя…</string>
+    <string name="pet_shadow_description">shadow</string>
+    <string name="level_pb_text">LV. %d</string>
+    <string name="inventory_label">Инвентарь</string>
+    <string name="shop_label">Магазин</string>
+    
+    <!--SHOP & INVENTORY-->
+    <string name="example_hat_name">HAT_EXAMPLE</string>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sample_task"
+    android:layout_width="325dp"
+    android:layout_height="63dp"
+    android:layout_marginBottom="26dp"
+    android:orientation="horizontal">
+    <Button
+        android:layout_width="35dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/task_button_left"
+        android:paddingBottom="4sp"
+        android:text="-"
+        android:textColor="@color/sky_blue"
+        android:textSize="36sp"
+        tools:ignore="TouchTargetSizeCheck" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/colorSecondary"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/sample_task_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="3dp"
+            android:text="@string/task1_name"
+            android:textSize="16sp"
+            android:textColor="?attr/colorPrimary"
+            android:textAlignment="center"/>
+        <ProgressBar
+            android:id="@+id/sample_task_pb"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:max="100"
+            android:progress="70"
+            style="@style/task_progress_bar"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="35dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/task_button_right"
+        android:paddingBottom="4sp"
+        android:text="+"
+        android:textColor="@color/sky_blue"
+        android:textSize="36sp"
+        tools:ignore="TouchTargetSizeCheck" />
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--GENERAL-->
+    <integer name="coins_amount">0</integer>
+
+    <!--STATS FRAGMENT-->
+    <integer name="stat_1_value">0</integer>
+    <integer name="stat_2_value">0</integer>
+    <integer name="stat_3_value">0</integer>
+    <integer name="stat_4_value">0</integer>
+    <integer name="stat_5_value">0</integer>
+
+    <!--PET FRAGMENT-->
+    <integer name="current_level">00</integer>
+    <integer name="current_level_max_progress">1</integer>
+    <integer name="current_level_progress">1</integer>
+
+    <!--SHOP & INVENTORY-->
+    <integer name="example_hat_cost">0</integer>
+</resources>

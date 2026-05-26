@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dark_blue">#91B2DF</color>
+    <color name="dark_blue_2">#8898C9</color>
+    <color name="sky_blue">#D6F1F8</color>
+    <color name="salad">#38DD7F</color>
+    <color name="dark_salad">#548E6D</color>
+    <color name="deep_ocean">#1C2958</color>
+    <color name="shadow_color">#1C2958AD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dark_olive">#658D54</color>
+    <color name="lime">#4AC814</color>
+    <color name="transparent">#00000000</color>
+</resources>

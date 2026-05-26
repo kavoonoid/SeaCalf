@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/stat_container"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="77dp">
+
+    <RelativeLayout
+        android:id="@+id/stat_1"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/stat_1_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/stat_icon_description"
+            android:src="@drawable/stat_stub" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_1_icon"
+            android:text="@string/stat_1_description"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_1_icon"
+            android:layout_alignParentBottom="true"
+            android:text="@integer/stat_1_value"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/stat_2"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="16dp">
+        <ImageView
+            android:id="@+id/stat_2_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/stat_icon_description"
+            android:src="@drawable/stat_stub" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_2_icon"
+            android:text="@string/stat_2_description"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_2_icon"
+            android:layout_alignParentBottom="true"
+            android:text="@integer/stat_2_value"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/stat_3"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/stat_3_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/stat_icon_description"
+            android:src="@drawable/stat_stub" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_3_icon"
+            android:text="@string/stat_3_description"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_3_icon"
+            android:layout_alignParentBottom="true"
+            android:text="@integer/stat_3_value"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/stat_4"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/stat_4_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/stat_icon_description"
+            android:src="@drawable/stat_stub" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_4_icon"
+            android:text="@string/stat_4_description"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_4_icon"
+            android:layout_alignParentBottom="true"
+            android:text="@integer/stat_4_value"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/stat_5"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/stat_5_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/stat_icon_description"
+            android:src="@drawable/stat_stub" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_5_icon"
+            android:text="@string/stat_5_description"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/stat_5_icon"
+            android:layout_alignParentBottom="true"
+            android:text="@integer/stat_5_value"
+            android:textColor="@color/dark_blue_2"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</LinearLayout>

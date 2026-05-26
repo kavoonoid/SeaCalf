@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/pet_tab"
+        android:title="@string/title_pet"
+        android:icon="@drawable/menu_pet"/>
+
+    <item
+        android:id="@+id/task_tab"
+        android:title="@string/title_tasks"
+        android:icon="@drawable/menu_tasks"/>
+
+    <item
+    android:id="@+id/stats_tab"
+    android:title="@string/title_stats"
+    android:icon="@drawable/menu_stats"/>
+</menu>

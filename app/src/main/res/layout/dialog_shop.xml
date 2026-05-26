@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="357dp"
+    android:layout_height="541dp"
+    android:clipChildren="false">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="541dp"
+        android:clipChildren="false">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="517dp"
+            app:cardBackgroundColor="@color/dark_blue">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="25dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/coin"
+                        android:contentDescription="@string/coin_description"/>
+                    <TextView
+                        android:id="@+id/coins_amount_shop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/sky_blue"
+                        android:text="@integer/coins_amount"/>
+                </LinearLayout>
+                <include layout="@layout/sample_shop_hat" />
+                <include layout="@layout/sample_shop_hat" />
+                <include layout="@layout/sample_shop_hat" />
+                <include layout="@layout/sample_shop_hat" />
+                <include layout="@layout/sample_shop_hat" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <Button
+            android:id="@+id/button_shop_close"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="14dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:drawableStart="@drawable/arrow_1"
+            android:text=""
+            android:backgroundTint="@color/sky_blue"/>
+    </RelativeLayout>
+</RelativeLayout>
