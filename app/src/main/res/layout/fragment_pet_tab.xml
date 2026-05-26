@@ -39,8 +39,6 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleX="1.45"
-                android:scaleY="1.45"
                 android:src="@drawable/pet"
                 android:contentDescription="@string/pet_name"
                 android:layout_centerInParent="true"/>

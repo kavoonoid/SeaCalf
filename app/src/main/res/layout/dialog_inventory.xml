@@ -13,16 +13,12 @@
             android:layout_height="517dp"
             app:cardBackgroundColor="@color/dark_blue">
             <LinearLayout
+                android:id="@+id/inventory_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
 
-                <include layout="@layout/sample_inventory_hat" />
-                <include layout="@layout/sample_inventory_hat" />
-                <include layout="@layout/sample_inventory_hat" />
-                <include layout="@layout/sample_inventory_hat" />
-                <include layout="@layout/sample_inventory_hat" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <Button

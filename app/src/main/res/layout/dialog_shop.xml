@@ -13,6 +13,7 @@
             android:layout_height="517dp"
             app:cardBackgroundColor="@color/dark_blue">
             <LinearLayout
+                android:id="@+id/shop_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -37,11 +38,7 @@
                         android:textColor="@color/sky_blue"
                         android:text="@integer/coins_amount"/>
                 </LinearLayout>
-                <include layout="@layout/sample_shop_hat" />
-                <include layout="@layout/sample_shop_hat" />
-                <include layout="@layout/sample_shop_hat" />
-                <include layout="@layout/sample_shop_hat" />
-                <include layout="@layout/sample_shop_hat" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <Button

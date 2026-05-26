@@ -31,12 +31,12 @@ import androidx.core.content.edit
     |statValueN
 
    items
-    |--itemName1
+    |--itemPrice1
     |--itemStatus1
     |
     ...
     |
-    |--itemNameN
+    |--itemPriceN
     |--itemStatusN
 */
 
@@ -55,7 +55,7 @@ class PreferencesManager(context: Context) {
     // FOR GENERAL
 
     fun getCoinsAmount(): Int {
-        return generalPreferences.getInt("coins_amount", 0)
+        return generalPreferences.getInt("coins_amount", 1000)
     }
 
     fun getTasksNumber(): Int {
@@ -154,6 +154,11 @@ class PreferencesManager(context: Context) {
         }
 
         return stats
+    }
+
+    // FOR ITEMS
+    fun getItemPriceById(id: Int): Int {
+        return itemPreferences.getInt("item_price_$id", 100)
     }
 
     // GLOBAL VISIBLE
