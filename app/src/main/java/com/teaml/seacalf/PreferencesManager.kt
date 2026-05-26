@@ -50,6 +50,7 @@ class PreferencesManager(context: Context) {
         var name: String = "NAME"
         var progress: Int = 0
         var max: Int = 0
+        var id: Int = 0
     }
 
     // FOR GENERAL
@@ -118,6 +119,7 @@ class PreferencesManager(context: Context) {
             tasks[i].name = taskPreferences.getString("task_name_$i", "name").toString()
             tasks[i].progress = taskPreferences.getInt("task_progress_$i", 0)
             tasks[i].max = taskPreferences.getInt("task_max_$i", 1)
+            tasks[i].id = i
         }
 
         return tasks
@@ -128,7 +130,15 @@ class PreferencesManager(context: Context) {
         task.name = taskPreferences.getString("task_name_$id", "name").toString()
         task.progress = taskPreferences.getInt("task_progress_$id", 0)
         task.max = taskPreferences.getInt("task_max_$id", 1)
+        task.id = id
         return task
+    }
+
+    fun saveTaskProgressById(id: Int, progress: Int) {
+        taskPreferences.edit {
+            putInt("task_progress_$id", progress)
+            apply()
+        }
     }
 
     fun saveTaskData(task: Task) {

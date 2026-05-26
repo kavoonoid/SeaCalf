@@ -44,24 +44,35 @@ class TasksTabFragment : Fragment(), DialogCreateTask.OnTaskCreatedListener {
         dialog.show(parentFragmentManager, "DialogCreateTask")
     }
 
-    fun loadTasksData(view: View) {
+    fun loadTasksData(view: View?) {
         val tasksNumber = preferencesManager.getTasksNumber()
         if (tasksNumber == 0)
             return
         val tasks = preferencesManager.getTasks()
 
         val inflater = LayoutInflater.from(context)
-        val container = view.findViewById<LinearLayout>(R.id.tasks_container)
+        val container = view?.findViewById<LinearLayout>(R.id.tasks_container)
 
         for(i in 0..<tasksNumber) {
             val sampleTask = inflater.inflate(R.layout.sample_task, container, false)
             val taskName = sampleTask.findViewById<TextView>(R.id.sample_task_name)
             val taskProgressBar = sampleTask.findViewById<ProgressBar>(R.id.sample_task_pb)
+            val taskPlusButton = sampleTask.findViewById<Button>(R.id.plus_button)
+            val taskMinusButton = sampleTask.findViewById<Button>(R.id.minus_button)
+
             taskName.text = tasks[i].name
             taskProgressBar.progress = tasks[i].progress
             taskProgressBar.max = tasks[i].max
 
-            container.addView(sampleTask)
+            taskPlusButton.setOnClickListener {
+                increaseTaskProgress(i)
+            }
+
+            taskMinusButton.setOnClickListener {
+                onTaskDeleteClick(i)
+            }
+
+            container?.addView(sampleTask)
         }
     }
 
@@ -74,10 +85,20 @@ class TasksTabFragment : Fragment(), DialogCreateTask.OnTaskCreatedListener {
         val sampleTask = inflater.inflate(R.layout.sample_task, container, false)
         val taskName = sampleTask.findViewById<TextView>(R.id.sample_task_name)
         val taskProgressBar = sampleTask.findViewById<ProgressBar>(R.id.sample_task_pb)
+        val taskPlusButton = sampleTask.findViewById<Button>(R.id.plus_button)
+        val taskMinusButton = sampleTask.findViewById<Button>(R.id.minus_button)
 
         taskName.text = task.name
         taskProgressBar.progress = task.progress
         taskProgressBar.max = task.max
+
+        taskPlusButton.setOnClickListener {
+            increaseTaskProgress(task.id)
+        }
+
+        taskMinusButton.setOnClickListener {
+            onTaskDeleteClick(task.id)
+        }
 
         container.addView(sampleTask)
         val taskCreatedMessage = Toast.makeText(
@@ -86,5 +107,15 @@ class TasksTabFragment : Fragment(), DialogCreateTask.OnTaskCreatedListener {
             Toast.LENGTH_SHORT
         )
         taskCreatedMessage.show()
+    }
+
+    fun increaseTaskProgress(id: Int) {
+        val progress = preferencesManager.getTaskById(id).progress
+        preferencesManager.saveTaskProgressById(id, progress+1)
+        loadTasksData(rootView)
+    }
+
+    fun onTaskDeleteClick(id: Int) {
+
     }
 }
