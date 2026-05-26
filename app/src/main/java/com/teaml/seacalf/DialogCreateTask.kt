@@ -49,12 +49,12 @@ class DialogCreateTask : DialogFragment() {
             task.progress = 0
             task.max = taskDaysInput.text.toString().toInt()
 
-            if(task.name.trim().isEmpty()) {
+            if(taskNameInput.text.trim().isEmpty()) {
                 taskNameInput.error = "Название цели не может быть пустым"
                 taskNameInput.requestFocus()
             }
 
-            else if(task.name.trim().isEmpty()) {
+            else if(taskDaysInput.text.trim().isEmpty()) {
                 taskDaysInput.error = "Количество дней не может быть пустым"
                 taskDaysInput.requestFocus()
             }

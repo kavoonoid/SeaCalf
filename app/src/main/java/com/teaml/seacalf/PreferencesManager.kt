@@ -44,7 +44,7 @@ class PreferencesManager(context: Context) {
     private val generalPreferences = context.getSharedPreferences(GENERAL_PREFS, Context.MODE_PRIVATE)
     private val taskPreferences = context.getSharedPreferences(TASK_PREFS, Context.MODE_PRIVATE)
     private val statPreferences = context.getSharedPreferences(STAT_PREFS, Context.MODE_PRIVATE)
-    private val itemPreferences = context.getSharedPreferences(STAT_PREFS, Context.MODE_PRIVATE)
+    private val itemPreferences = context.getSharedPreferences(ITEM_PREFS, Context.MODE_PRIVATE)
 
     class Task {
         var name: String = "NAME"
