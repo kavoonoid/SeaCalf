@@ -8,15 +8,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var preferencesManager: PreferencesManager
+    private lateinit var coinsAmountText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
-        preferencesManager = PreferencesManager.getInstance(this)
 
-        val coinsAmount = findViewById<TextView>(R.id.coins_amount)
-        coinsAmount.text = preferencesManager.getCoinsAmount().toString()
+        preferencesManager = PreferencesManager.getInstance(this)
+        coinsAmountText = findViewById(R.id.coins_amount)
+
+        refreshHeader()
 
         val navView: BottomNavigationView = findViewById(R.id.nav_menu)
         navView.itemIconTintList = null
@@ -42,6 +43,10 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+    }
+
+    fun refreshHeader() {
+        coinsAmountText.text = preferencesManager.getCoinsAmount().toString()
     }
 
     private fun showFragment(fragment: Fragment) {

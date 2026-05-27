@@ -1,6 +1,7 @@
 package com.teaml.seacalf
 import android.content.Context
 import androidx.core.content.edit
+import kotlin.apply
 
 /* general
     |--coinsAmount
@@ -44,7 +45,7 @@ class PreferencesManager(context: Context) {
     private val generalPreferences = context.getSharedPreferences(GENERAL_PREFS, Context.MODE_PRIVATE)
     private val taskPreferences = context.getSharedPreferences(TASK_PREFS, Context.MODE_PRIVATE)
     private val statPreferences = context.getSharedPreferences(STAT_PREFS, Context.MODE_PRIVATE)
-    private val itemPreferences = context.getSharedPreferences(STAT_PREFS, Context.MODE_PRIVATE)
+    private val itemPreferences = context.getSharedPreferences(ITEM_PREFS, Context.MODE_PRIVATE)
 
     class Task {
         var name: String = "NAME"
@@ -55,7 +56,14 @@ class PreferencesManager(context: Context) {
     // FOR GENERAL
 
     fun getCoinsAmount(): Int {
-        return generalPreferences.getInt("coins_amount", 1000)
+        return generalPreferences.getInt("coins_amount", 0)
+    }
+
+    fun setCoinsAmount(num: Int) {
+        generalPreferences.edit {
+            putInt("coins_amount", num)
+            apply()
+        }
     }
 
     fun getTasksNumber(): Int {
@@ -81,12 +89,13 @@ class PreferencesManager(context: Context) {
     }
 
     fun getPetLevel(): Int {
-        return generalPreferences.getInt("pet_level", 0)
+        return generalPreferences.getInt("pet_level", 1)
     }
 
     fun setPetLevel(level: Int) {
         generalPreferences.edit {
             putInt("pet_level", level)
+            apply()
         }
     }
 
@@ -102,13 +111,34 @@ class PreferencesManager(context: Context) {
 
 
     fun getPetMax(): Int {
-        return generalPreferences.getInt("pet_max", 1)
+        return generalPreferences.getInt("pet_max", 5)
     }
 
     fun setPetMax(max: Int) {
         generalPreferences.edit {
             putInt("pet_max", max)
+            apply()
         }
+    }
+
+    fun addPetProgress(amount: Int) {
+        if (amount <= 0) return
+
+        var currentProgress = getPetProgress()
+        var currentLevel = getPetLevel()
+        var currentMax = getPetMax()
+
+        currentProgress += amount
+
+        while (currentProgress >= currentMax && currentMax > 0) {
+            currentProgress -= currentMax
+            currentLevel++
+            currentMax = currentLevel * 5
+        }
+
+        setPetLevel(currentLevel)
+        setPetProgress(currentProgress)
+        setPetMax(currentMax)
     }
     // FOR TASKS
     fun getTasks(): Array<Task> {
@@ -143,8 +173,37 @@ class PreferencesManager(context: Context) {
         }
     }
 
-    fun onTaskDeleted() {}
-    fun onTaskCompleted() {}
+    fun saveTaskProgress(index: Int, newProgress: Int) {
+        taskPreferences.edit {
+            putInt("task_progress_$index", newProgress)
+            apply()
+        }
+    }
+
+    fun deleteTask(taskId: Int) {
+        val tasksNumber = getTasksNumber()
+        if (taskId < 0 || taskId >= tasksNumber) return
+
+        val editor = taskPreferences.edit()
+
+        for (i in taskId until tasksNumber - 1) {
+            val nextName = taskPreferences.getString("task_name_${i + 1}", "")
+            val nextProgress = taskPreferences.getInt("task_progress_${i + 1}", 0)
+            val nextMax = taskPreferences.getInt("task_max_${i + 1}", 1)
+
+            editor.putString("task_name_$i", nextName)
+            editor.putInt("task_progress_$i", nextProgress)
+            editor.putInt("task_max_$i", nextMax)
+        }
+
+        editor.remove("task_name_${tasksNumber - 1}")
+        editor.remove("task_progress_${tasksNumber - 1}")
+        editor.remove("task_max_${tasksNumber - 1}")
+
+        editor.apply()
+
+        setTasksNumber(tasksNumber - 1)
+    }
 
     // FOR STATS
     fun loadStats(): Array<Int> {

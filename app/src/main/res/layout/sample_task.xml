@@ -8,6 +8,7 @@
     android:layout_marginBottom="26dp"
     android:orientation="horizontal">
     <Button
+        android:id="@+id/sample_task_minus"
         android:layout_width="35dp"
         android:layout_height="match_parent"
         android:background="@drawable/task_button_left"
@@ -42,6 +43,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/sample_task_plus"
         android:layout_width="35dp"
         android:layout_height="match_parent"
         android:background="@drawable/task_button_right"

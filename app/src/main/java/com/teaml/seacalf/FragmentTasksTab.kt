@@ -44,47 +44,112 @@ class TasksTabFragment : Fragment(), DialogCreateTask.OnTaskCreatedListener {
         dialog.show(parentFragmentManager, "DialogCreateTask")
     }
 
+    private fun setupTaskView(sampleTask: View, index: Int) {
+        val task = preferencesManager.getTaskById(index)
+
+        val taskName = sampleTask.findViewById<TextView>(R.id.sample_task_name)
+        val progressBar = sampleTask.findViewById<ProgressBar>(R.id.sample_task_pb)
+        val btnMinus = sampleTask.findViewById<Button>(R.id.sample_task_minus)
+        val btnPlus = sampleTask.findViewById<Button>(R.id.sample_task_plus)
+
+        taskName.text = task.name
+        progressBar.progress = task.progress
+        progressBar.max = task.max
+
+        sampleTask.tag = index
+
+        btnPlus.setOnClickListener {
+            updateTaskProgress(index, 1)
+        }
+
+        btnMinus.setOnClickListener {
+            deleteTask(index)
+        }
+    }
+
+    private fun updateTaskProgress(taskIndex: Int, delta: Int) {
+        val task = preferencesManager.getTaskById(taskIndex)
+        val oldProgress = task.progress
+
+        task.progress = (task.progress + delta).coerceIn(0, task.max)
+
+        preferencesManager.saveTaskProgress(taskIndex, task.progress)
+
+        if (delta > 0) {
+            preferencesManager.addPetProgress(1)
+        }
+
+        if (oldProgress < task.max && task.progress >= task.max) {
+            giveTaskCompletionRewards(task)
+            deleteTask(taskIndex)
+            return
+        }
+
+        refreshTaskView(taskIndex)
+    }
+
+    private fun giveTaskCompletionRewards(task: PreferencesManager.Task) {
+        val expBonus = task.max / 3
+
+        preferencesManager.addPetProgress(expBonus)
+
+        val currentCoins = preferencesManager.getCoinsAmount()
+        preferencesManager.setCoinsAmount(currentCoins + task.max)
+
+        (requireActivity() as? MainActivity)?.refreshHeader()
+
+        Toast.makeText(
+            requireContext(),
+            "Задача выполнена!\n+${task.max} монет и +$expBonus опыта",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun deleteTask(index: Int) {
+        preferencesManager.deleteTask(index)
+
+        safeLoadTasksData()
+
+        Toast.makeText(requireContext(), "Задача удалена", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun refreshTaskView(index: Int) {
+        val container = rootView?.findViewById<LinearLayout>(R.id.tasks_container) ?: return
+
+        for (i in 0 until container.childCount) {
+            val child = container.getChildAt(i)
+            if (child.tag == index) {
+                val progressBar = child.findViewById<ProgressBar>(R.id.sample_task_pb)
+                val task = preferencesManager.getTaskById(index)
+                progressBar.progress = task.progress
+                break
+            }
+        }
+    }
+
     fun loadTasksData(view: View) {
         val tasksNumber = preferencesManager.getTasksNumber()
-        if (tasksNumber == 0)
-            return
-        val tasks = preferencesManager.getTasks()
-
-        val inflater = LayoutInflater.from(context)
         val container = view.findViewById<LinearLayout>(R.id.tasks_container)
 
-        for(i in 0..<tasksNumber) {
-            val sampleTask = inflater.inflate(R.layout.sample_task, container, false)
-            val taskName = sampleTask.findViewById<TextView>(R.id.sample_task_name)
-            val taskProgressBar = sampleTask.findViewById<ProgressBar>(R.id.sample_task_pb)
-            taskName.text = tasks[i].name
-            taskProgressBar.progress = tasks[i].progress
-            taskProgressBar.max = tasks[i].max
+        container.removeAllViews()
 
+        if (tasksNumber == 0) return
+
+        val inflater = LayoutInflater.from(context)
+
+        for (i in 0 until tasksNumber) {
+            val sampleTask = inflater.inflate(R.layout.sample_task, container, false)
+            setupTaskView(sampleTask, i)
             container.addView(sampleTask)
         }
     }
 
+    private fun safeLoadTasksData() {
+        rootView?.let { loadTasksData(it) }
+    }
+
     override fun onTaskCreated(id: Int) {
-        val task = preferencesManager.getTaskById(id)
-
-        val inflater = LayoutInflater.from(context)
-        val container = rootView?.findViewById<LinearLayout>(R.id.tasks_container)
-            ?: return
-        val sampleTask = inflater.inflate(R.layout.sample_task, container, false)
-        val taskName = sampleTask.findViewById<TextView>(R.id.sample_task_name)
-        val taskProgressBar = sampleTask.findViewById<ProgressBar>(R.id.sample_task_pb)
-
-        taskName.text = task.name
-        taskProgressBar.progress = task.progress
-        taskProgressBar.max = task.max
-
-        container.addView(sampleTask)
-        val taskCreatedMessage = Toast.makeText(
-            requireContext(),
-            "Создано!",
-            Toast.LENGTH_SHORT
-        )
-        taskCreatedMessage.show()
+        loadTasksData(rootView ?: return)
+        Toast.makeText(requireContext(), "Создано!", Toast.LENGTH_SHORT).show()
     }
 }

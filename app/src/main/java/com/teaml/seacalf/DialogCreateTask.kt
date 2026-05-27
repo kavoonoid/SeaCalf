@@ -41,7 +41,6 @@ class DialogCreateTask : DialogFragment() {
         val negativeButton = view.findViewById<Button>(R.id.negative_button)
         val positiveButton = view.findViewById<Button>(R.id.positive_button)
 
-
         fun onTaskCreatedListener() {
             val task = Task()
 

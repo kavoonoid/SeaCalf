@@ -18,6 +18,7 @@ import com.teaml.seacalf.DialogShop
 import com.teaml.seacalf.PreferencesManager
 class FragmentPetTab : Fragment() {
     private lateinit var progressBar: CircularProgressBar
+    private lateinit var pbLevelText: TextView
     private lateinit var preferencesManager: PreferencesManager
 
     override fun onCreateView(
@@ -37,18 +38,16 @@ class FragmentPetTab : Fragment() {
         petName.setText(preferencesManager.getPetName())
 
         petName.setOnEditorActionListener { _, actionId, _ ->
-            onPetNameUpdated(petName)
-        }
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                onPetNameUpdated(petName)
+                return@setOnEditorActionListener true
+            }
+            false
+            }
 
         // level pb attributes
         progressBar = view.findViewById(R.id.pet_level_pb)
-        val petProgress = preferencesManager.getPetProgress()
-        val petMax = preferencesManager.getPetMax()
-        animateProgress(petProgress, petMax)
-
-        val pbLevelText = view.findViewById<TextView>(R.id.pb_level_text)
-        val currentLevel = preferencesManager.getPetLevel()
-        pbLevelText.text = getString(R.string.level_pb_text, currentLevel)
+        pbLevelText = view.findViewById(R.id.pb_level_text)
 
         // shop & inventory
         val buttonInventoryOpen = view.findViewById<Button>(R.id.button_inventory_open)
@@ -60,12 +59,27 @@ class FragmentPetTab : Fragment() {
         buttonShopOpen.setOnClickListener {
             showDialogShop()
         }
+
+        refreshPetData()
+    }
+
+    fun refreshPetData() {
+        val petProgress = preferencesManager.getPetProgress()
+        val petMax = preferencesManager.getPetMax()
+        val petLevel = preferencesManager.getPetLevel()
+
+        pbLevelText.text = getString(R.string.level_pb_text, petLevel)
+
+        progressBar.setMax(petMax)
+        progressBar.setProgress(petProgress)
+
+        animateProgress(petProgress, petMax)
     }
 
     // progress bar rendering
     private fun animateProgress(progress: Int, max: Int) {
-        val animator = ValueAnimator.ofInt(progress, max).apply {
-            duration = 1000L
+        val animator = ValueAnimator.ofInt(0, progress).apply {
+            duration = 800L
             interpolator = LinearInterpolator()
             addUpdateListener { animation ->
                 val value = animation.animatedValue as Int
