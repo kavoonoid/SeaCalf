@@ -10,7 +10,6 @@ import kotlin.apply
     |--petLevel
     |--petProgress
     |--petMax
-    |--petSelectedSkin
     |--petSelectedHat
 
    tasks
@@ -32,13 +31,11 @@ import kotlin.apply
     |statValueN
 
    items
-    |--itemPrice1
     |--itemStatus1
     |
     ...
     |
     |--itemPriceN
-    |--itemStatusN
 */
 
 class PreferencesManager(context: Context) {
@@ -139,7 +136,20 @@ class PreferencesManager(context: Context) {
         setPetLevel(currentLevel)
         setPetProgress(currentProgress)
         setPetMax(currentMax)
+        setStatAt(3, getPetLevel())
     }
+
+    fun getSelectedHat(): Int {
+        return generalPreferences.getInt("pet_selected_hat", 0)
+    }
+
+    fun setSelectedHat(hatId: Int) {
+        generalPreferences.edit {
+            putInt("pet_selected_hat", hatId)
+            apply()
+        }
+    }
+
     // FOR TASKS
     fun getTasks(): Array<Task> {
         val tasksInProcess = getTasksNumber()
@@ -173,9 +183,9 @@ class PreferencesManager(context: Context) {
         }
     }
 
-    fun saveTaskProgress(index: Int, newProgress: Int) {
+    fun saveTaskProgress(id: Int, newProgress: Int) {
         taskPreferences.edit {
-            putInt("task_progress_$index", newProgress)
+            putInt("task_progress_$id", newProgress)
             apply()
         }
     }
@@ -209,10 +219,21 @@ class PreferencesManager(context: Context) {
     fun loadStats(): Array<Int> {
         val stats = Array(5, {0})
         for(i in 0..4) {
-            stats[i] = statPreferences.getInt("stat_value_$i", 0)
+            stats[i] = statPreferences.getInt("stat_value_${i+1}", 0)
         }
 
         return stats
+    }
+
+    fun getStatAt(id: Int): Int {
+        return statPreferences.getInt("stat_value_$id", 0)
+    }
+
+    fun setStatAt(id: Int, value: Int) {
+        statPreferences.edit {
+            putInt("stat_value_$id", value)
+            apply()
+        }
     }
 
     // FOR ITEMS

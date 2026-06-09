@@ -8,6 +8,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal">
+        <LinearLayout
+            android:id="@+id/tasks_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+        </LinearLayout>
         <Button
             android:id="@+id/add_task_button"
             android:layout_width="140dp"
@@ -21,12 +29,5 @@
             android:text="+"
             android:textSize="96sp"
             android:textColor="@color/sky_blue"/>
-        <LinearLayout
-            android:id="@+id/tasks_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

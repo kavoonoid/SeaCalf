@@ -79,7 +79,7 @@ class FragmentPetTab : Fragment() {
     // progress bar rendering
     private fun animateProgress(progress: Int, max: Int) {
         val animator = ValueAnimator.ofInt(0, progress).apply {
-            duration = 800L
+            duration = 300L
             interpolator = LinearInterpolator()
             addUpdateListener { animation ->
                 val value = animation.animatedValue as Int

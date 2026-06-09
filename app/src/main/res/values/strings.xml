@@ -32,4 +32,7 @@
     
     <!--SHOP & INVENTORY-->
     <string name="example_hat_name">HAT_EXAMPLE</string>
+    <string name="hat_name_1">Шляпа фокусника</string>
+    <string name="hat_name_2">Шлем</string>
+    <string name="hat_name_3">Цветочек</string>
 </resources>

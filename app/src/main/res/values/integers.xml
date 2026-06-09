@@ -17,4 +17,7 @@
 
     <!--SHOP & INVENTORY-->
     <integer name="example_hat_cost">0</integer>
+    <integer name="hat_cost_1">130</integer>
+    <integer name="hat_cost_2">45</integer>
+    <integer name="hat_cost_3">15</integer>
 </resources>

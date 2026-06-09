@@ -81,7 +81,8 @@ class TasksTabFragment : Fragment(), DialogCreateTask.OnTaskCreatedListener {
 
         if (oldProgress < task.max && task.progress >= task.max) {
             giveTaskCompletionRewards(task)
-            deleteTask(taskIndex)
+            preferencesManager.deleteTask(taskIndex) // delete if error and add deleteTask fun
+            safeLoadTasksData()
             return
         }
 
@@ -98,6 +99,11 @@ class TasksTabFragment : Fragment(), DialogCreateTask.OnTaskCreatedListener {
 
         (requireActivity() as? MainActivity)?.refreshHeader()
 
+        val tasksCompleted = preferencesManager.getStatAt(1) + 1
+        val coinsEarned = preferencesManager.getStatAt(4) + task.max
+        preferencesManager.setStatAt(1, tasksCompleted)
+        preferencesManager.setStatAt(4, coinsEarned)
+
         Toast.makeText(
             requireContext(),
             "Задача выполнена!\n+${task.max} монет и +$expBonus опыта",
@@ -107,6 +113,8 @@ class TasksTabFragment : Fragment(), DialogCreateTask.OnTaskCreatedListener {
 
     private fun deleteTask(index: Int) {
         preferencesManager.deleteTask(index)
+        val tasksFailed = preferencesManager.getStatAt(2) + 1
+        preferencesManager.setStatAt(2, tasksFailed)
 
         safeLoadTasksData()
 
