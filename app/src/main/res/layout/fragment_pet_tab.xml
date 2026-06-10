@@ -12,21 +12,23 @@
         android:layout_marginBottom="10dp"
         android:layout_gravity="center_horizontal"
         android:textColor="@color/dark_blue_2"
-        android:maxLength="22"
+        android:maxLength="15"
+        android:inputType="text"
+        android:maxLines="1"
         android:text="@string/pet_name"
         android:hint="@string/pet_name_hint"
         android:imeOptions="actionDone"
         android:textSize="28sp"/>
     <RelativeLayout
         android:id="@+id/pet_information"
-        android:layout_width="260dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="15dp"
         android:clipChildren="false">
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="230dp"
+            android:layout_height="240dp"
             android:layout_centerHorizontal="true">
             <ImageView
                 android:layout_width="wrap_content"
@@ -37,9 +39,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"/>
             <ImageView
+                android:id="@+id/pet_skin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pet"
+                android:src="@drawable/pet_0"
                 android:contentDescription="@string/pet_name"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"/>
@@ -51,6 +54,7 @@
                     android:id="@+id/pet_level_pb"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:layout_marginTop="20dp"
                     app:max="@integer/current_level_max_progress"
                     app:progress="@integer/current_level_progress"
                     app:backgroundColor="@color/dark_olive"
@@ -59,6 +63,7 @@
                     android:id="@+id/pb_level_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingTop="20dp"
                     android:layout_centerInParent="true"
                     android:textSize="16sp"
                     android:text="@string/level_pb_text"

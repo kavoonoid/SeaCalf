@@ -1,7 +1,6 @@
 package com.teaml.seacalf
 import android.content.Context
 import androidx.core.content.edit
-import kotlin.apply
 
 /* general
     |--coinsAmount
@@ -31,11 +30,11 @@ import kotlin.apply
     |statValueN
 
    items
-    |--itemStatus1
+    |--itemState1 [own] | [none]
     |
     ...
     |
-    |--itemPriceN
+    |--itemStateN
 */
 
 class PreferencesManager(context: Context) {
@@ -75,7 +74,7 @@ class PreferencesManager(context: Context) {
     }
 
     fun getPetName(): String {
-        return generalPreferences.getString("pet_name", "NAME").toString()
+        return generalPreferences.getString("pet_name", "Антон").toString()
     }
 
     fun setPetName(name: String) {
@@ -237,8 +236,15 @@ class PreferencesManager(context: Context) {
     }
 
     // FOR ITEMS
-    fun getItemPriceById(id: Int): Int {
-        return itemPreferences.getInt("item_price_$id", 100)
+    fun getItemStateAt(id: Int): String? {
+        return itemPreferences.getString("item_state_$id", "none")
+    }
+
+    fun setItemStateAt(id: Int, state: String) {
+        itemPreferences.edit {
+            putString("item_state_$id", state)
+            apply()
+        }
     }
 
     // GLOBAL VISIBLE

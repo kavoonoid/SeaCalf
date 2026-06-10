@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
+            android:id="@+id/inventory_hat_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -19,11 +20,17 @@
             android:src="@drawable/icon_hat_example"
             android:contentDescription="@string/example_hat_name" />
         <TextView
+            android:id="@+id/inventory_hat_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="68dp"
             android:text="@string/example_hat_name"
             android:textAlignment="viewStart"
             style="@style/text_hat_text" />
+        <TextView
+            android:id="@+id/inventory_hat_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_hat_price" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -23,7 +23,7 @@
     <string name="stat_5_description">Предметов куплено:</string>
 
     <!--PET FRAGMENT-->
-    <string name="pet_name">Тюлень</string>
+    <string name="pet_name">Антон</string>
     <string name="pet_name_hint">Имя…</string>
     <string name="pet_shadow_description">shadow</string>
     <string name="level_pb_text">LV. %d</string>
@@ -32,7 +32,8 @@
     
     <!--SHOP & INVENTORY-->
     <string name="example_hat_name">HAT_EXAMPLE</string>
-    <string name="hat_name_1">Шляпа фокусника</string>
+    <string name="hat_name_0">Без шляпы</string>
+    <string name="hat_name_1">Цилиндр</string>
     <string name="hat_name_2">Шлем</string>
     <string name="hat_name_3">Цветочек</string>
 </resources>

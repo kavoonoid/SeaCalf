@@ -13,13 +13,13 @@ import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
 import android.content.Context
 import android.view.inputmethod.EditorInfo
-import com.teaml.seacalf.DialogInventory
-import com.teaml.seacalf.DialogShop
-import com.teaml.seacalf.PreferencesManager
-class FragmentPetTab : Fragment() {
+import android.widget.ImageView
+
+class FragmentPetTab : Fragment(), DialogInventory.OnSkinSelectedListener {
     private lateinit var progressBar: CircularProgressBar
     private lateinit var pbLevelText: TextView
     private lateinit var preferencesManager: PreferencesManager
+    private lateinit var skin: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,14 +40,22 @@ class FragmentPetTab : Fragment() {
         petName.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 onPetNameUpdated(petName)
+                petName.clearFocus()
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
+
                 return@setOnEditorActionListener true
             }
             false
-            }
+        }
 
         // level pb attributes
         progressBar = view.findViewById(R.id.pet_level_pb)
         pbLevelText = view.findViewById(R.id.pb_level_text)
+
+        // pet skin
+        skin = view.findViewById(R.id.pet_skin)
+        setSkin()
 
         // shop & inventory
         val buttonInventoryOpen = view.findViewById<Button>(R.id.button_inventory_open)
@@ -61,6 +69,12 @@ class FragmentPetTab : Fragment() {
         }
 
         refreshPetData()
+    }
+
+    override fun setSkin() {
+        val selectedHatId = preferencesManager.getSelectedHat()
+        val relSkin = resources.getIdentifier("pet_$selectedHatId", "drawable", requireContext().packageName)
+        skin.setImageResource(relSkin)
     }
 
     fun refreshPetData() {
@@ -91,6 +105,7 @@ class FragmentPetTab : Fragment() {
 
     fun showDialogInventory() {
         val dialog1 = DialogInventory.newInstance()
+        dialog1.setListener(this)
         dialog1.show(parentFragmentManager, "DialogInventory")
     }
 

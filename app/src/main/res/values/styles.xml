@@ -20,7 +20,7 @@
     
     <style name="text_hat_price" parent="@style/text_hat_text">
         <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
     </style>
     
     <style name="DialogCustom" parent="Theme.AppCompat.Light.Dialog">
